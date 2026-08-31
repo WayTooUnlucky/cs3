@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //matrix parameter example
@@ -50,3 +50,4 @@ public class MatrixParams
       System.out.println(test);
    }
 }
+

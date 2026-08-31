@@ -1,4 +1,4 @@
-//© A+ Computer Science  -  www.apluscompsci.com
+//Â© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
@@ -15,10 +15,25 @@ public class MadLib
 {
 	//add in three ArrayList instance variables
 		//1 for nouns, 1 for adjectives, and 1 for verbs
-	
-	public MadLib()
-	{
-	}
+   ArrayList<String> nns;
+   ArrayList<String> adj;
+   ArrayList<String> vrb;	
+   
+   {
+      nns = new ArrayList<String>();
+      adj = new ArrayList<String>();
+      vrb = new ArrayList<String>();
+      
+      try{
+         loadNouns();
+         loadVerbs();
+         loadAdjectives();
+      }
+      catch(Exception e) {
+         throw e;
+      }
+   }
+	public MadLib() {};
 
 	public MadLib(String fileName)
 	{
@@ -26,7 +41,26 @@ public class MadLib
 		
 		try{
 			Scanner file = new Scanner(new File(fileName));
-			
+         String story = "";
+			while(file.hasNext()) {
+            String next = file.next();
+            switch (next) {
+               case "#":
+                  story += getRandomNoun() + " ";
+                  break;
+               case "@":
+                  story += getRandomVerb() + " ";
+                  break;
+               case "&":
+                  story += getRandomAdjective() + " ";
+                  break;
+               default:
+                  story += next + " ";
+                  
+            }
+         }
+         out.println(story);
+            
 		}
 		catch(Exception e)
 		{
@@ -38,43 +72,55 @@ public class MadLib
 	public void loadNouns()
 	{
 		try{		
+         Scanner scan = new Scanner(new File("nouns.dat"));
+         while(scan.hasNextLine())
+            nns.add(scan.nextLine());
 		}
 		catch(Exception e)
 		{
+         out.println("nouns.dat does not exist / we got a problem");
 		}			
 	}
 	
 	public void loadVerbs()
 	{
 		try{	
+         Scanner scan = new Scanner(new File("verbs.dat"));
+         while(scan.hasNextLine())
+            vrb.add(scan.nextLine());
 		}
 		catch(Exception e)
 		{
+         out.println("verbs.dat does not exist / we got a problem");
 		}
 	}
 
 	public void loadAdjectives()
 	{
 		try{	
+         Scanner scan = new Scanner(new File("adjectives.dat"));
+         while(scan.hasNextLine())
+            adj.add(scan.nextLine());
 		}
 		catch(Exception e)
 		{
+         out.println("adjectives.dat does not exist / we got a problem");
 		}
 	}
 
 	public String getRandomVerb()
 	{	
-		return "";
+		return vrb.get((int)(Math.random() * vrb.size()));
 	}
 	
 	public String getRandomNoun()
 	{		
-		return "";
+		return nns.get((int)(Math.random() * nns.size()));
 	}
 	
 	public String getRandomAdjective()
 	{		
-		return "";
+		return adj.get((int)(Math.random() * adj.size()));
 	}		
 
 	public String toString()

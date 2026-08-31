@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix output example 3
@@ -29,3 +29,5 @@ public class MatrixOutThree
 		*/
 	}
 }
+
+

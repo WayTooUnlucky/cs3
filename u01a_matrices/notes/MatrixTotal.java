@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix total example
@@ -34,3 +34,4 @@ class MatrixTotal
 		out.println("\ntotal : " + total);
 	}
 }
+

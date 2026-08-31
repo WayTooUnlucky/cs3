@@ -1,4 +1,4 @@
-//© A+ Computer Science  -  www.apluscompsci.com
+//Â© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
@@ -13,37 +13,42 @@ public class Word
 
 	public Word()
 	{
-
+      this("");
 	}
 
 	public Word(String wrd)
 	{
-
+      setWord(wrd);
 	}
 
 	public void setWord(String wrd)
 	{
-
+      word = wrd;
 	}
 	
 	public int getNumVowels()
 	{
 		int count=0;
-
-
-
-
-
+      for(int i = 0; i < word.length(); i++)
+         if(vowels.contains(word.substring(i,i+1)))
+            count++;
 		return count;
 	}
 	
 	public int getLength()
 	{
-		return 0;
+		return word.length();
 	}
 
 	public String toString()
 	{
-	   return "";
+      return word;
 	}
+   
+   public String lengthyToString() {
+      String output = word + "\n";
+      output += "num vowels == " + getNumVowels() + "\n";
+      output += "num chars == " + getLength() + "\n";
+	   return output;
+   }
 }

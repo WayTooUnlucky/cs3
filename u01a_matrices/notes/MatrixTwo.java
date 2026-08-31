@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix instantiation example
@@ -22,3 +22,4 @@ public class MatrixTwo
 		out.println(mat[0].length);
 	}
 }
+

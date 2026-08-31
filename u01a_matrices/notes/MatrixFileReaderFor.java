@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix file reader with a for loop
@@ -46,3 +46,4 @@ public class MatrixFileReaderFor
 		}
 	}
 }
+

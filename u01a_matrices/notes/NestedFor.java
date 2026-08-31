@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //nested for loop example
@@ -19,3 +19,4 @@ public class NestedFor
 		}
 	}
 }
+

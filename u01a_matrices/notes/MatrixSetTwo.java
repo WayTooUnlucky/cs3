@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //setting matrix values example 2
@@ -30,3 +30,4 @@ public class MatrixSetTwo
 		}
 	}
 }
+

@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix output example 2
@@ -22,3 +22,5 @@ public class MatrixOutTwo
 		out.println();
 	}
 }
+
+

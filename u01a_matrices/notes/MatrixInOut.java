@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix input example
@@ -38,3 +38,4 @@ class MatrixInOut
 		}
 	}
 }
+

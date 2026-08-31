@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix output example 4 using a String
@@ -24,3 +24,5 @@ public class MatrixOutFour
 		out.println(output);
 	}
 }
+
+

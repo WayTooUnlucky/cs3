@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix output example one
@@ -17,3 +17,5 @@ public class MatrixOutOne
 		out.println(Arrays.toString(mat[1]));
 	}
 }
+
+

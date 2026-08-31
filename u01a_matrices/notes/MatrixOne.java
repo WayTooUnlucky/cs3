@@ -1,4 +1,4 @@
-//� A+ Computer Science
+//Â© A+ Computer Science
 // www.apluscompsci.com
 
 //Matrix instantiation example
@@ -16,3 +16,4 @@ public class MatrixOne
 		out.println(mat.length);
 	}
 }
+
