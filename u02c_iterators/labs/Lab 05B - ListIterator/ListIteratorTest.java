@@ -19,7 +19,7 @@ public class ListIteratorTest
       setTest(line);
 	}
 
-	public void setTest(String line) {
+	public void setTest(String line) { //put collections addall
       list = new ArrayList<>();
       String[] words = line.split(" ");
       String toRemove = words[words.length - 2];

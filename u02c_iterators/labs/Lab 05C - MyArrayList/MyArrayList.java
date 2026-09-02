@@ -1,8 +1,9 @@
-package myarraylist;
+
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.ConcurrentModificationException;
+import java.lang.IndexOutOfBoundsException;
 
 public class MyArrayList<T> implements Iterable<T>
 {
@@ -15,7 +16,7 @@ public class MyArrayList<T> implements Iterable<T>
 	
    @SuppressWarnings("unchecked")
    public MyArrayList(int initSize) {
-      list = new T[10];
+      list = (T[])new Object[initSize];
       count = 0;
    }
 	
@@ -29,7 +30,8 @@ public class MyArrayList<T> implements Iterable<T>
       //resize
       if(count == list.length) {
          T[] tempList = list;
-         list = new T[list.length * 1.5];
+         int newSize = (int)(list.length * 1.5);
+         list = (T[])new Object[newSize];
          for(int i = 0; i < tempList.length; i++)
             list[i] = tempList[i];
       }
@@ -41,6 +43,8 @@ public class MyArrayList<T> implements Iterable<T>
       }
       
       //check if index is in bounds
+      if(index > count)
+         index = count;
       
       //put in new element
       list[index] = value;
@@ -48,52 +52,94 @@ public class MyArrayList<T> implements Iterable<T>
 	
    public void clear()
    {
-      list = new T[list.length];
+      list = (T[])new Object[10];
    }
 	
+   @SuppressWarnings("unchecked")
    public T get(int index) {
-      return ;
+      return (T)list[index];
    }
 	
    public int indexOf(T value)
    {
-      return 0;
+      if(count == 0)
+         return -1;
+      
+      for(int i = 0; i < count; i++)
+         if(list[i] == value)
+            return i;
+      return -1;
    }
 	
    public boolean remove(T value)
    {
-      return false;
+      if(value == null)
+         return false;
+      boolean shiftUp = false;
+      for(int i = 0; i < count; i++) {
+         if(value.equals(list[i]))
+            shiftUp = true;
+         if(shiftUp && i < count - 1)
+            list[i] = list[i + 1];
+         if(shiftUp && i == count - 1)
+            list[i] = null;
+      }
+      count--;
+      return shiftUp;
    }
 	
    public boolean isEmpty() {
-      return false;
+      return count == 0;
    }
-	
+   
+	@SuppressWarnings("unchecked")
    public T removeAt(int index)
    {
-      return null;
+      if(index < 0 || index >= count)
+         throw new IndexOutOfBoundsException();
+      T removed = (T)list[index];
+      for(int i = index; i < count; i++)
+         if(i < count - 1)
+            list[i] = list[i + 1];
+         else {
+            list[i] = null;
+            count--;
+         }
+      return removed;
    }
 	
-   public T set(int index, T element) {
-      return null;
+   public void set(int index, T element) {
+      try {
+      list[index] = element;
+      }
+      catch (Exception e) {
+         throw e;
+      }
    }
 	
    public int size() {
-      return 0;
+      return count;
    }
 	
    public int capacity() {
-      return 0;
+      return list.length;
    }
 	
    public Object[] toArray() {
-      return null;
+      Object[] ray = new Object[count];
+      for(int i = 0; i < count; i++)
+         ray[i] = list[i];
+      return ray;
    }
 	
    @Override
    public String toString()
    {
-      return null;
+      String output = "[";
+      for(int i = 0; i < count; i++)
+         output += list[i] + ", ";
+      output += "]";
+      return output;
    }
 	
    public Iterator<T> iterator() {
@@ -108,19 +154,24 @@ public class MyArrayList<T> implements Iterable<T>
    	
       public LinkedListIterator() {
       
+         expectedCount = list.length;
+         last = -1;
+         next = 0;
       }
    	
       public boolean hasNext() {
-         return false;
+         return next < expectedCount;
       }
    	
       public T next() {
          checkForComodification();
-         return null;
+         last = next;
+         next++;
+         return list[last];
       }
    	
       public void remove() {
-      
+         
       }
    	
       private void checkForComodification() {
@@ -133,7 +184,7 @@ public class MyArrayList<T> implements Iterable<T>
    @SuppressWarnings("unchecked")
    private void resizeArray()
    {
-      T[] temp = (T[]) new Object[list.length + 10];
+      T[] temp = (T[])new Object[list.length + 10];
       for (int index = 0; index < list.length; index++)
          temp[index] = list[index];
       list = temp;
