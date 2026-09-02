@@ -1,7 +1,7 @@
 import java.util.*;
 import static java.lang.System.*;
 
-public class ToListTester
+public class AsListTester
 {
 	public static void main(String args[])
 	{

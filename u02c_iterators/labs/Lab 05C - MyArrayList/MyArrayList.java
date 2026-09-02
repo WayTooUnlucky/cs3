@@ -15,26 +15,44 @@ public class MyArrayList<T> implements Iterable<T>
 	
    @SuppressWarnings("unchecked")
    public MyArrayList(int initSize) {
-   
+      list = new T[10];
+      count = 0;
    }
 	
    public void add(T value)
    {
-   
+      add(count, value);
    }
 	
    public void add(int index, T value)
    {
-   
+      //resize
+      if(count == list.length) {
+         T[] tempList = list;
+         list = new T[list.length * 1.5];
+         for(int i = 0; i < tempList.length; i++)
+            list[i] = tempList[i];
+      }
+      
+      //move over elements
+      if(index <= count) {
+         for(int i = index; i < count; i++)
+            list[i+1] = list[i];
+      }
+      
+      //check if index is in bounds
+      
+      //put in new element
+      list[index] = value;
    }
 	
    public void clear()
    {
-   
+      list = new T[list.length];
    }
 	
    public T get(int index) {
-      return null;
+      return ;
    }
 	
    public int indexOf(T value)

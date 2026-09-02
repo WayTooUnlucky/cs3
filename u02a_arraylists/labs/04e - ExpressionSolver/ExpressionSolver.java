@@ -1,4 +1,4 @@
-//© A+ Computer Science  -  www.apluscompsci.com
+//Â© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
@@ -12,10 +12,8 @@ import static java.lang.System.*;
 public class ExpressionSolver
 {
 	//add in instance variables
-   String ogExpression;
    ArrayList<String> expression;
    {
-      ogExpression = "";
       expression = new ArrayList<String>();
    }
 
@@ -25,10 +23,7 @@ public class ExpressionSolver
 
 	public void setExpression(String s)
 	{  
-      ogExpression = s;
-      String[] expArray = s.split("");
-      for(String str : expArray)
-         expression.add(str);
+      
 	}
 
 	public void solveExpression()
@@ -46,11 +41,8 @@ public class ExpressionSolver
          nested.solveExpression();
          expression.add(i, nested.toString());
       }
-      while(expression.contains("^")) {
-         int loc = expression.indexOf("^");
-         int left = Integer.parseInt(expression.get(loc - 1));
-         int right = Integer.parseInt(expression.get(loc + 1));
-         power(loc, left, right);
+      while(expression.contains("^"); {
+         
       }
       while(expression.contains("[*/]")) {
          int loc = expression.indexOf("[*/]");
@@ -88,10 +80,7 @@ public class ExpressionSolver
       int difference = left - right;
       answerHandler(loc, difference);
    }
-   private void power(int loc, int left, int right) {
-      int answer = (int)Math.pow(left, right);
-      answerHandler(loc, answer);
-   }
+   private void 
    private void answerHandler(int loc, int answer) {
       expression.set(loc - 1, "" + answer);
       expression.remove(loc);
