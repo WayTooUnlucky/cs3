@@ -28,12 +28,14 @@ public class MyArrayList<T> implements Iterable<T>
    public void add(int index, T value)
    {
       //resize
-      resizeArray();
+      if(count + 1 == list.length)
+         resizeArray();
       
       //move over elements
       if(index <= count) {
-         for(int i = index; i < count; i++)
-            list[i+1] = list[i];
+         for(int i = count; i > index; i--) {
+            list[i] = list[i - 1];
+         }
       }
       
       //check if index is in bounds
@@ -42,15 +44,17 @@ public class MyArrayList<T> implements Iterable<T>
       
       //put in new element
       list[index] = value;
+      count++;
    }
 	
    public void clear()
    {
       list = (T[])new Object[10];
+      count = 0;
    }
 	
    public T get(int index) {
-      return (T)list[index];
+      return list[index];
    }
 	
    public int indexOf(T value)
@@ -128,8 +132,9 @@ public class MyArrayList<T> implements Iterable<T>
    public String toString()
    {
       String output = "[";
-      for(int i = 0; i < count; i++)
+      for(int i = 0; i < count - 1; i++)
          output += list[i] + ", ";
+      output += list[count - 1];
       output += "]";
       return output;
    }
@@ -146,7 +151,7 @@ public class MyArrayList<T> implements Iterable<T>
    	
       public LinkedListIterator() {
       
-         expectedCount = list.length;
+         expectedCount = count;
          last = -1;
          next = 0;
       }
@@ -157,19 +162,23 @@ public class MyArrayList<T> implements Iterable<T>
    	
       public T next() {
          checkForComodification();
-         if(next + 1 > count)
-            throw new NoSuchElementException();
          last = next;
-         next++;
+         next = next + 1;
          return list[last];
       }
    	
       public void remove() {
-         
+         checkForComodification();
+         for(int i = last; i < count - 1; i++)
+            list[i] = list[i + 1];
+         list[count - 1] = null;
+         count--;
+         expectedCount--;
       }
    	
       private void checkForComodification() {
-      
+         if(expectedCount != count)
+            throw new ConcurrentModificationException();
       }
    }
 	

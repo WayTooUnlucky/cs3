@@ -54,7 +54,7 @@ public class Histogram
             int loc = letters.indexOf(chr);
             if(loc != -1)
                count.set(loc, count.get(loc) + 1);
-            }
+         }
       }
 	}
 	public char mostFrequent()

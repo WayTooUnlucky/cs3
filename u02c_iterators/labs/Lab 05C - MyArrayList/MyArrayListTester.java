@@ -1,5 +1,4 @@
 import java.util.Iterator;
-import myarraylist.MyArrayList;
 
 public class MyArrayListTester
 {
@@ -17,19 +16,19 @@ public class MyArrayListTester
     	list.add("Orange");
     	System.out.println("Adding \"Lemon\" to the list.");
     	list.add("Lemon");
-    	System.out.println("Adding \"Orange\" to the list.");
+    	System.out.println("Adding \"Pear\" to the list.");
     	list.add("Pear");
     	System.out.println("Adding \"Peach\" to the list.");
     	list.add("Peach");
     	System.out.println("\nThe capacity of list is now " + list.capacity());
     	System.out.println("The size of the list is now " + list.size());
-    	
+      
     	System.out.println("\nAdding \"Grapefruit\" at position 2");
     	list.add(2, "Grapefruit");
     	System.out.println("Replacing the element at position 5 with Pear");
-    	list.set(6, "Pear");
+    	list.set(6, "Pear"); //check on the index later
     	
-    	
+      
     	System.out.println("\nTesting the list iterator:");
     	Iterator<String> itr = list.iterator();
     	while (itr.hasNext())
@@ -39,7 +38,7 @@ public class MyArrayListTester
     			itr.remove();
     		System.out.print(str + " ");
     	}
-    	
+      
     	System.out.println("\n\nTesting the for each statement:");
     	for (String s: list)
     		System.out.print(s + " ");
