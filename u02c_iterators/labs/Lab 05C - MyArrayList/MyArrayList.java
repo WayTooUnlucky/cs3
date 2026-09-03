@@ -28,13 +28,7 @@ public class MyArrayList<T> implements Iterable<T>
    public void add(int index, T value)
    {
       //resize
-      if(count == list.length) {
-         T[] tempList = list;
-         int newSize = (int)(list.length * 1.5);
-         list = (T[])new Object[newSize];
-         for(int i = 0; i < tempList.length; i++)
-            list[i] = tempList[i];
-      }
+      resizeArray();
       
       //move over elements
       if(index <= count) {
@@ -55,7 +49,6 @@ public class MyArrayList<T> implements Iterable<T>
       list = (T[])new Object[10];
    }
 	
-   @SuppressWarnings("unchecked")
    public T get(int index) {
       return (T)list[index];
    }
@@ -92,7 +85,6 @@ public class MyArrayList<T> implements Iterable<T>
       return count == 0;
    }
    
-	@SuppressWarnings("unchecked")
    public T removeAt(int index)
    {
       if(index < 0 || index >= count)
@@ -101,7 +93,7 @@ public class MyArrayList<T> implements Iterable<T>
       for(int i = index; i < count; i++)
          if(i < count - 1)
             list[i] = list[i + 1];
-         else {
+         else { //does this even need to be here?
             list[i] = null;
             count--;
          }
@@ -165,6 +157,8 @@ public class MyArrayList<T> implements Iterable<T>
    	
       public T next() {
          checkForComodification();
+         if(next + 1 > count)
+            throw new NoSuchElementException();
          last = next;
          next++;
          return list[last];
