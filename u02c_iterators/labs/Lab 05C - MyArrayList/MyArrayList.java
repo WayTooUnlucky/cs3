@@ -27,7 +27,10 @@ public class MyArrayList<T> implements Iterable<T>
 	
    public void add(int index, T value)
    {
-      //resize
+      if(index < 0 || index > count)
+         throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
+      
+      //resize if needed
       if(count + 1 == list.length)
          resizeArray();
       
@@ -38,10 +41,6 @@ public class MyArrayList<T> implements Iterable<T>
          }
       }
       
-      //check if index is in bounds
-      if(index > count)
-         index = count;
-      
       //put in new element
       list[index] = value;
       count++;
@@ -49,7 +48,8 @@ public class MyArrayList<T> implements Iterable<T>
 	
    public void clear()
    {
-      list = (T[])new Object[10];
+      for(int i = 0; i < count; i++)
+         list[i] = null;
       count = 0;
    }
 	
@@ -63,26 +63,18 @@ public class MyArrayList<T> implements Iterable<T>
          return -1;
       
       for(int i = 0; i < count; i++)
-         if(list[i] == value)
+         if(list[i] == value || list[i].equals(value)) //supports nulls now :D
             return i;
       return -1;
    }
 	
    public boolean remove(T value)
    {
-      if(value == null)
+      int index = indexOf(value);
+      if(index == -1)
          return false;
-      boolean shiftUp = false;
-      for(int i = 0; i < count; i++) {
-         if(value.equals(list[i]))
-            shiftUp = true;
-         if(shiftUp && i < count - 1)
-            list[i] = list[i + 1];
-         if(shiftUp && i == count - 1)
-            list[i] = null;
-      }
-      count--;
-      return shiftUp;
+      removeAt(index);
+      return true;
    }
 	
    public boolean isEmpty() {
@@ -92,19 +84,21 @@ public class MyArrayList<T> implements Iterable<T>
    public T removeAt(int index)
    {
       if(index < 0 || index >= count)
-         throw new IndexOutOfBoundsException();
+         throw new IndexOutOfBoundsException(String.format("Index %d is out of bounds", index));
+
       T removed = (T)list[index];
-      for(int i = index; i < count; i++)
-         if(i < count - 1)
-            list[i] = list[i + 1];
-         else { //does this even need to be here?
-            list[i] = null;
-            count--;
-         }
+      
+      for(int i = index; i < count; i++) 
+         list[i] = list[i + 1];
+      
+      list[count] = null;
+      count--;
       return removed;
    }
 	
    public void set(int index, T element) {
+      if(index < 0 || index >= count)
+         throw new IndexOutOfBoundsException(String.format("Index %d is out of bounds", index));
       try {
       list[index] = element;
       }
@@ -131,11 +125,13 @@ public class MyArrayList<T> implements Iterable<T>
    @Override
    public String toString()
    {
+      if(count == 0)
+         return "[]";
+      
       String output = "[";
       for(int i = 0; i < count - 1; i++)
          output += list[i] + ", ";
-      output += list[count - 1];
-      output += "]";
+      output += list[count - 1] + "]";
       return output;
    }
 	
@@ -143,7 +139,7 @@ public class MyArrayList<T> implements Iterable<T>
       return new LinkedListIterator();
    }
 	
-   private class LinkedListIterator implements Iterator<T>
+   private class LinkedListIterator implements Iterator<T> //check remove method (doesnt work :(((((((((((((((((((((((()
    {
       private int expectedCount;
       private int last;
@@ -192,5 +188,6 @@ public class MyArrayList<T> implements Iterable<T>
          temp[index] = list[index];
       list = temp;
    }
+   
 	
 }
