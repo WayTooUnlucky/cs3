@@ -160,6 +160,7 @@ public class MyArrayList<T> implements Iterable<T>
          checkForComodification();
          last = next;
          next = next + 1;
+         expectedCount++;
          return list[last];
       }
    	
@@ -169,11 +170,11 @@ public class MyArrayList<T> implements Iterable<T>
             list[i] = list[i + 1];
          list[count - 1] = null;
          count--;
-         expectedCount--;
+         expectedCount++;
       }
    	
       private void checkForComodification() {
-         if(expectedCount != count)
+         if(expectedCount != count) //rework this
             throw new ConcurrentModificationException();
       }
    }
