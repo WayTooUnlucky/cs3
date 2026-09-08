@@ -27,5 +27,8 @@ public class Lab09b
       at.countAts(3,9);
       out.printf("%d %d has %s\n", 3, 9, at);
       at.resetMat();
+      
+      out.printf("(countAts1) 5 0 has %d @s connected.\n", at.countAts1(5, 0));
+      at.resetMat();
 	}
 }

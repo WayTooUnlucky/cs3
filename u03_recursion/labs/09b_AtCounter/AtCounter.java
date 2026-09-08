@@ -38,6 +38,26 @@ public class AtCounter
       }
 
 	}
+   
+   public int countAts1(int r, int c) {
+
+		//add in recursive code to count up the # of @s connected
+		//start checking at spot [r,c]
+      if(r >= 0 && r < atMat.length 
+         && c >= 0 && c < atMat[r].length 
+         && atMat[r][c] == '@')
+      {
+         atMat[r][c] = '#';
+         return 1
+               + countAts1(r + 1, c)
+               + countAts1(r - 1, c)
+               + countAts1(r, c + 1)
+               + countAts1(r, c - 1);
+      }
+      else
+         return 0;
+
+	}
 
    public void resetMat() {
       for(char[] charRay : atMat)
