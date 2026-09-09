@@ -14,21 +14,14 @@ public class Lab09b
       AtCounter at = new AtCounter();
       at.countAts(0,0);
       out.printf("%d %d has %s\n", 0, 0, at);
-      at.resetMat();
       at.countAts(2,5);
       out.printf("%d %d has %s\n", 2, 5, at);
-      at.resetMat();
       at.countAts(5,0);
       out.printf("%d %d has %s\n", 5, 0, at);
-      at.resetMat();
       at.countAts(9,9);
       out.printf("%d %d has %s\n", 9, 9, at);
-      at.resetMat();
       at.countAts(3,9);
       out.printf("%d %d has %s\n", 3, 9, at);
-      at.resetMat();
       
-      out.printf("(countAts1) 5 0 has %d @s connected.\n", at.countAts1(5, 0));
-      at.resetMat();
 	}
 }

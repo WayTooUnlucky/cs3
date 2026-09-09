@@ -5,13 +5,17 @@
 //Lab  -
 
 import static java.lang.System.*;
+import java.util.ArrayList;
 
 public class AtCounter
 {
    private char[][] atMat;
    private int atCount;
+   private ArrayList<MatrixLocation> rayLoc;
+   
 	public AtCounter() {
       atCount = 0;
+      rayLoc = new ArrayList<>();
 		atMat = new char[][]{{'@','-','@','-','-','@','-','@','@','@'},
 									{'@','@','@','-','@','@','-','@','-','@'},
 									{'-','-','-','-','-','-','-','@','@','@'},
@@ -22,49 +26,30 @@ public class AtCounter
 									{'-','@','@','@','-','@','-','-','-','-'},
 									{'-','@','-','@','-','@','-','@','@','@'},
 									{'-','@','@','@','@','@','-','@','@','@'}};
+      
 	}
 
 	public void countAts(int r, int c) {
-
-		//add in recursive code to count up the # of @s connected
-		//start checking at spot [r,c]
-      if(r >= 0 && r < atMat.length && c >= 0 && c < atMat[r].length && atMat[r][c] == '@') {
-         atMat[r][c] = '#';
-         atCount++;
-         countAts(r + 1, c);
-         countAts(r - 1, c);
-         countAts(r, c + 1);
-         countAts(r, c - 1);
-      }
-
+      atCount = countAts1(r, c);
+      resetMat();
 	}
    
-   public int countAts1(int r, int c) {
-
-		//add in recursive code to count up the # of @s connected
-		//start checking at spot [r,c]
-      if(r >= 0 && r < atMat.length 
-         && c >= 0 && c < atMat[r].length 
-         && atMat[r][c] == '@')
-      {
+   private int countAts1(int r, int c) {
+      if(r >= 0 && r < atMat.length && c >= 0 && c < atMat[r].length && atMat[r][c] == '@') {
          atMat[r][c] = '#';
-         return 1
-               + countAts1(r + 1, c)
-               + countAts1(r - 1, c)
-               + countAts1(r, c + 1)
-               + countAts1(r, c - 1);
+         rayLoc.add(new MatrixLocation(r,c));
+         return 1 + countAts1(r + 1, c) + countAts1(r - 1, c) + countAts1(r, c + 1) + countAts1(r, c - 1);
       }
       else
          return 0;
-
 	}
+   
+   private record MatrixLocation(int r, int c) {}
 
    public void resetMat() {
-      for(char[] charRay : atMat)
-         for(int i = 0; i < charRay.length; i++)
-            if(charRay[i] == '#')
-               charRay[i] = '@';
-      atCount = 0;
+      for(MatrixLocation loc : rayLoc)
+         atMat[loc.r()][loc.c()] = '@';
+      rayLoc.clear();
    }
 	public String toString() {
 		String output="";
@@ -72,3 +57,4 @@ public class AtCounter
 		return output;
 	}
 }
+
