@@ -19,23 +19,29 @@ public class Grid
 
 	public Grid(int rows, int cols)
 	{
-	
-	
+   	setSize(rows, cols);
 	}
 
 	public void setSize(int rows, int cols)
 	{
+      if(rows < 1 || cols < 1)
+         throw new IllegalArgumentException("rows or cols cannot be less than 1");
 		grid = new Cell[rows][cols];
 	}
 
 	public void setSpot(int row,int col, Cell val)
 	{
-	
-	
+	   if(val == null)
+         throw new IllegalArgumentException("val cannot be null");
+      if(row < 1 || col < 1 || row >= grid.length || col >= grid[0].length)
+         throw new IllegalArgumentException("row and col has to be in bounds");
+      grid[row][cell] = val;
 	}
 	
 	public Cell getSpot(int row, int col)
 	{
+      if(row < 1 || col < 1 || row >= grid.length || col >= grid[0].length)
+         throw new IllegalArgumentException("row and col has to be in bounds");
 		return grid[row][col];
 	}
 	
@@ -62,8 +68,8 @@ public class Grid
 				Cell spot = grid[r][c];
 				
 				//if the current spot is not null
-
-
+            if(grid[r][c] != null)
+               
 				//else
 
 			}

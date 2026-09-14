@@ -22,41 +22,41 @@ public class ColoredCell extends Cell
 
 	public ColoredCell(boolean fill)
 	{
-
-
+      this(5, 5, fill);
 	}
 
 	public ColoredCell(int x, int y, boolean fill)
 	{
-
-
+      this(x, y, 5, 5, fill);
 	}
 
 	public ColoredCell(int x, int y, int w, int h, boolean fill)
 	{
-
-
+      this(x, y, w, h, fill, Color.BLUE);
 	}
 
 	public ColoredCell(int x, int y, int w, int h, boolean fill, Color c)
 	{
-
-
+      super(x, y, w, h);
+      setFilled(fill);
+      setColor(c);
 	}
 
 	public void setFilled(boolean fill)
 	{
-
+      filled = fill;
 	}
 
 	public void setColor(Color c)
 	{
-
+      if(c == null)
+         c = Color.BLUE;
+      color = c;
 	}
 	
 	public boolean getFilled()
 	{
-		return false;
+		return filled;
 	}
 	
 	public Color getColor()

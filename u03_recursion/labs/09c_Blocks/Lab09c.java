@@ -13,5 +13,11 @@ public class Lab09c
 {
 	public static void main( String args[] ) throws IOException
 	{
+      Grid grid = new Grid(Grid.vowels);
+      out.println(grid);
+      out.println("A count == " + grid.findMax("A"));
+      out.println("E count == " + grid.findMax("E"));
+      
+      out.println(grid.findMax(""));
 	}
 }
