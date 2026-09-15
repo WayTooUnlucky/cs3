@@ -33,14 +33,14 @@ public class Grid
 	{
 	   if(val == null)
          throw new IllegalArgumentException("val cannot be null");
-      if(row < 1 || col < 1 || row >= grid.length || col >= grid[0].length)
+      if(row < 0 || col < 0 || row >= grid.length || col >= grid[0].length)
          throw new IllegalArgumentException("row and col has to be in bounds");
-      grid[row][cell] = val;
+      grid[row][col] = val;
 	}
 	
 	public Cell getSpot(int row, int col)
 	{
-      if(row < 1 || col < 1 || row >= grid.length || col >= grid[0].length)
+      if(row < 0 || col < 0 || row >= grid.length || col >= grid[0].length)
          throw new IllegalArgumentException("row and col has to be in bounds");
 		return grid[row][col];
 	}
@@ -59,19 +59,18 @@ public class Grid
 	{
 		boolean full=true;
 		
-		//for loop for row
 		for(int r=0;r<grid.length;r++)
 		{
-			//for loop for col
 			for(int c=0;c<grid[r].length;c++)
 			{
 				Cell spot = grid[r][c];
 				
 				//if the current spot is not null
-            if(grid[r][c] != null)
-               
+            if(spot != null)
+               spot.draw(window);
 				//else
-
+            else
+               full = false;
 			}
 		}
 		return full;
@@ -81,15 +80,11 @@ public class Grid
 	{
 		String output="";
 		//for loop for row
-	
-	
-			//for loop for col
-	
-	
-	
-	
-	
-	
+	   for(Cell[] row : grid) {
+         for(Cell cell : row)
+            output += cell + " ";
+         output += "\n";
+      }
 		return output;
 	}
 

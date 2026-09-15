@@ -69,12 +69,12 @@ public class ColoredCell extends Cell
 		window.setFont(new Font("TAHOMA",Font.BOLD,28));
 		window.setColor(getColor());
 		window.drawRect(getX(),getY(),getWidth(),getHeight());
-
-
-
-
-
-	}
+      
+      if(filled) {
+         window.setColor(getColor());
+         window.fillRect(getX(),getY(),getWidth()*8/10 ,getHeight()*8/10);
+      }
+  	}
 	
 	public String toString()
 	{
