@@ -30,10 +30,19 @@ public class Triangle extends Canvas implements Runnable
 	
 	public void triangle(Graphics window, int x1, int y1, int x2, int y2, int x3, int y3)
 	{
+      int r = (int)((double)x1/800*255); //color is now based on x1, y1, and x2
+      int g = (int)((double)y1/600*255);
+      int b = (int)((double)x2/800*255);
+      window.setColor(new Color(r,g,b));
+      
 		//if statement base case
+      if((x1 == (WIDTH-10)/2) && y1 == 20) //find out better system later
+         window.fillPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
+      else {
 			//midpoint = (x1 + x2 / 2), (y1 + y2/ 2)
 			
 			window.drawLine(x1, y1, x2, y2);
+      }
 	}
 	
 	public void run()
