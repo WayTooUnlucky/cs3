@@ -31,9 +31,10 @@ public class GarbageCollector extends JPanel implements MouseListener
 				if(num == 1)
 					trashMap.setSpot(r,c,new ColoredCell(r*rows+10, c*cols+10, 10, 10, false, Color.ORANGE));
 				//else
-            else
+            else {
 					//load in a different Cell
-               trashMap.setSpot(r,c,new ColoredCell(r*rows+10, c*cols+10, 10, 10, true, Color.GREEN));
+               trashMap.setSpot(r,c,new ColoredCell(r*rows+10, c*cols+10, 10, 10, true, Color.ORANGE));
+            }
 			}
 		}
 
@@ -83,6 +84,7 @@ public class GarbageCollector extends JPanel implements MouseListener
       if(trash == null || !(trash.getFilled()))
          return;
       trash.setFilled(false);
+      //trash.setColor(Color.BLUE); //changes outline of picked up cells to blue
       pickUpTrash(r+1,c);
       pickUpTrash(r-1,c);
       pickUpTrash(r,c+1);

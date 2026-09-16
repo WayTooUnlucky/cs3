@@ -67,13 +67,14 @@ public class ColoredCell extends Cell
 	public void draw(Graphics window)
 	{
 		window.setFont(new Font("TAHOMA",Font.BOLD,28));
+      
+      if(filled) {
+         window.setColor(Color.GREEN);
+         window.fillRect(getX()+2,getY()+2,getWidth()*8/10 ,getHeight()*8/10);
+      }
 		window.setColor(getColor());
 		window.drawRect(getX(),getY(),getWidth(),getHeight());
       
-      if(filled) {
-         window.setColor(getColor());
-         window.fillRect(getX(),getY(),getWidth()*8/10 ,getHeight()*8/10);
-      }
   	}
 	
 	public String toString()
