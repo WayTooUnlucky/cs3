@@ -14,10 +14,16 @@ public class Permutation
 
 	public Permutation(String word)
 	{
-		orig=word;
-		list="";
+      setWord(word);
 	}
 
+   public void setWord(String word) {
+   
+      if(word == null || word.length() == 0)
+         throw new IllegalArgumentException("word can't be null or have a len of zero");
+		orig=word;
+		list="";
+   }
    public void permutation()
    {
    	out.println("\nPERMUTATION OF WORD :: "+orig);
@@ -26,19 +32,14 @@ public class Permutation
 
 	private void permutation(String orig, String sent)
 	{
-
-
-
-
-
-
-
-
-
-
-
-
-
+      if(orig.length() == sent.length())
+         list += sent + "\n";
+      else {
+         for(int i = 0; i < orig.length(); i++)
+            if(sent.indexOf(orig.substring(i, i + 1)) == -1)
+               permutation(orig, sent + orig.substring(i, i + 1));
+      }
+      
 	}
 
    public String toString()
