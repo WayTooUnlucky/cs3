@@ -36,9 +36,22 @@ public class Grid
 	{
       setGrid(rows, cols, vals);
 	}
+   public Grid(String[][] mat) {
+      setGrid(mat);
+   }
    
+   public void setGrid(String[][] mat) {
+      grid = new String[mat.length][mat[0].length];
+      for(int r = 0; r < mat.length; r++)
+         for(int c = 0; c < mat[r].length; c++)
+            if(mat[r][c] == null || mat[r][c].length() == 0)
+               throw new IllegalArgumentException("String at " + r + " " + c + "is not valid and is null or has len 0");
+            else
+               grid[r][c] = mat[r][c];
+   }
 	public void setGrid(int rows, int cols, String vals)
 	{
+      
       try{
          grid = new String[rows][cols];
          for(String[] row : grid)
