@@ -13,11 +13,20 @@ public class Triangle extends Canvas implements Runnable
 {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
+   private int smallness = 5;
 		
 	public Triangle()
 	{
 		setBackground(Color.WHITE);
 	}
+   
+   public Triangle(int size) {
+      if(size == 0)
+         return;
+      else
+         smallness = size;
+      setBackground(Color.WHITE);
+   }
 
 	public void paint( Graphics window )
 	{
@@ -30,19 +39,35 @@ public class Triangle extends Canvas implements Runnable
 	
 	public void triangle(Graphics window, int x1, int y1, int x2, int y2, int x3, int y3)
 	{
-      int r = (int)((double)x1/800*255); //color is now based on x1, y1, and x2
-      int g = (int)((double)y1/600*255);
-      int b = (int)((double)x2/800*255);
+      if(x1-x3<smallness) //stop when triangle is less than smallness pixels wide
+         return;
+      
+		int midXRight = (x1 + x2)/2;
+      int midXLeft = (x1 + x3)/2;
+      int midXBottom = (x3 + x2)/2;
+      int midY = (y1 + y2)/2;
+      int yBottom = (y3);
+      
+      window.setColor(Color.WHITE);
+      window.fillPolygon(new int[]{midXLeft, midXRight, midXBottom}, new int[]{midY, midY, yBottom}, 3);
+    
+      int r = (int)(Math.random() * 255);
+      int g = (int)(Math.random() * 255);
+      int b = (int)(Math.random() * 255);
+      
       window.setColor(new Color(r,g,b));
       
-		//if statement base case
-      if((x1 == (WIDTH-10)/2) && y1 == 20) //find out better system later
-         window.fillPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
-      else {
-			//midpoint = (x1 + x2 / 2), (y1 + y2/ 2)
-			
-			window.drawLine(x1, y1, x2, y2);
-      }
+      //top triangle
+      window.fillPolygon(new int[]{x1, midXRight, midXLeft}, new int[]{y1, midY, midY}, 3);
+      triangle(window, x1, y1, midXRight, midY, midXLeft, midY);
+      
+      //left triangle
+      window.fillPolygon(new int[]{midXLeft, x1, x3}, new int[]{midY, yBottom, yBottom}, 3);
+      triangle(window, midXLeft, midY, x1, yBottom, x3, yBottom);
+      
+      //right triangle
+      window.fillPolygon(new int[]{midXRight, x2, midXBottom}, new int[]{midY, yBottom, yBottom}, 3);
+		triangle(window, midXRight, midY, x2, yBottom, midXBottom, yBottom); 
 	}
 	
 	public void run()
