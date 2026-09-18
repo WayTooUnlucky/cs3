@@ -51,9 +51,17 @@ public class Triangle extends Canvas implements Runnable
       window.setColor(Color.WHITE);
       window.fillPolygon(new int[]{midXLeft, midXRight, midXBottom}, new int[]{midY, midY, yBottom}, 3);
     
+      //random color
       int r = (int)(Math.random() * 255);
       int g = (int)(Math.random() * 255);
       int b = (int)(Math.random() * 255);
+      
+      
+      /* //gradient color (green -> purple)
+      int r = (int)(x3/800.0*255);
+      int g = (int)(y3/600.0*255);
+      int b = (int)(x2/800.0*255);
+      */
       
       window.setColor(new Color(r,g,b));
       
