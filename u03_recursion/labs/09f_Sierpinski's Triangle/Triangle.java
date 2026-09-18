@@ -44,12 +44,12 @@ public class Triangle extends Canvas implements Runnable
       
 		int midXRight = (x1 + x2)/2;
       int midXLeft = (x1 + x3)/2;
-      int midXBottom = (x3 + x2)/2;
+      int xMiddle = x1;
       int midY = (y1 + y2)/2;
-      int yBottom = (y3);
+      int yBottom = y3;
       
-      window.setColor(Color.WHITE);
-      window.fillPolygon(new int[]{midXLeft, midXRight, midXBottom}, new int[]{midY, midY, yBottom}, 3);
+      window.setColor(Color.WHITE); //draws the upside down triangle
+      window.fillPolygon(new int[]{midXLeft, midXRight, xMiddle}, new int[]{midY, midY, yBottom}, 3);
     
       //random color
       int r = (int)(Math.random() * 255);
@@ -74,8 +74,9 @@ public class Triangle extends Canvas implements Runnable
       triangle(window, midXLeft, midY, x1, yBottom, x3, yBottom);
       
       //right triangle
-      window.fillPolygon(new int[]{midXRight, x2, midXBottom}, new int[]{midY, yBottom, yBottom}, 3);
-		triangle(window, midXRight, midY, x2, yBottom, midXBottom, yBottom); 
+      window.fillPolygon(new int[]{midXRight, x2, xMiddle}, new int[]{midY, yBottom, yBottom}, 3);
+		triangle(window, midXRight, midY, x2, yBottom, xMiddle, yBottom); 
+      
 	}
 	
 	public void run()
