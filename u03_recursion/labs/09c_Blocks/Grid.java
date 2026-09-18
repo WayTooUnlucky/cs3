@@ -41,41 +41,32 @@ public class Grid
    }
    
    public void setGrid(String[][] mat) {
+      if(mat == null)
+         throw new IllegalArgumentException("String[][] mat has to exist");
+
       grid = new String[mat.length][mat[0].length];
       for(int r = 0; r < mat.length; r++)
          for(int c = 0; c < mat[r].length; c++)
             if(mat[r][c] == null || mat[r][c].length() == 0)
-               throw new IllegalArgumentException("String at " + r + " " + c + "is not valid and is null or has len 0");
+               throw new IllegalArgumentException("String at " + r + " " + c + "needs to have letters/exist");
             else
                grid[r][c] = mat[r][c];
    }
+   
 	public void setGrid(int rows, int cols, String vals)
-	{
-      
-      try{
-         grid = new String[rows][cols];
-         for(String[] row : grid)
-            for(int i = 0; i < row.length; i++) {
-               int index = (int)(Math.random() * vals.length());
-               String randomVal = "" + vals.charAt(index);
-               row[i] = randomVal;
-            }
-            
-      } catch (NullPointerException e) {
-         Scanner scan = new Scanner(System.in);
-         out.print("vals can not equal null. input another string here :: ");
-         setGrid(rows, cols, scan.next());
-      } catch (NegativeArraySizeException e) {
-         Scanner scan = new Scanner(System.in);
-         out.print("array dimensions can not be negative. input new dimensions \nrows :: ");
-         int rows1 = scan.nextInt();
-         out.print("cols :: ");
-         int cols1 = scan.nextInt();
-         setGrid(rows1, cols1, vals);
-      } catch (Exception e) {
-         out.print("something went wrong.");
-         System.exit(1);
-      }
+	{  
+      if(rows < 1 || cols < 1)
+         throw new IllegalArgumentException("rows and cols must be positive!");
+      else if(vals == null || vals.length() == 0)
+         throw new IllegalArgumentException("String vals has to exist and have something!");
+
+      grid = new String[rows][cols];
+      for(String[] row : grid)
+         for(int i = 0; i < row.length; i++) {
+            int index = (int)(Math.random() * vals.length());
+            String randomVal = "" + vals.charAt(index);
+            row[i] = randomVal;
+         }
 	}
 
 	public int findMax(String val)

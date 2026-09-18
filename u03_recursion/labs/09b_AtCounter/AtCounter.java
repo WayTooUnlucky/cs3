@@ -35,7 +35,10 @@ public class AtCounter
 	}
    
    private int countAts1(int r, int c) {
-      if(r >= 0 && r < atMat.length && c >= 0 && c < atMat[r].length && atMat[r][c] == '@') {
+      if(r < 0 || r >= atMat.length || c < 0 || c >= atMat.length)
+         throw new IllegalArgumentException("r and c have to be in bounds");
+         
+      if(atMat[r][c] == '@') {
          atMat[r][c] = '#';
          rayLoc.add(new MatrixLocation(r,c));
          return 1 + countAts1(r + 1, c) + countAts1(r - 1, c) + countAts1(r, c + 1) + countAts1(r, c - 1);
