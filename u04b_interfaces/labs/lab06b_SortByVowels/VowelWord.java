@@ -9,8 +9,12 @@ import static java.lang.System.*;
 class VowelWord implements Comparable<VowelWord>
 {
 	//add a string instance variable
+   private String word;
 	
 	//add a constructor
+   public VowelWord(String word) {
+      this.word = word;
+   }
 
 	private int numVowels()
 	{
@@ -21,7 +25,10 @@ class VowelWord implements Comparable<VowelWord>
 
 	public int compareTo(VowelWord other)
 	{
-		return -1;
+      int comp = other.numVowels() - this.numVowels();
+		if(comp == 0)
+         comp = word.compareTo(other.word);
+      return -1;
 	}
 
 	public String toString()
