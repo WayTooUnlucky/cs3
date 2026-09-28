@@ -20,19 +20,22 @@ class VowelWord implements Comparable<VowelWord>
 	{
 		String vowels = "AEIOUaeiou";
 		int vowelCount=0;
+      for(int i = 0; i < word.length(); i++)
+         if(vowels.indexOf(word.substring(i,i+1)) != -1)
+            vowelCount++;
 		return vowelCount;
 	}
 
 	public int compareTo(VowelWord other)
 	{
-      int comp = other.numVowels() - this.numVowels();
+      int comp = numVowels() - other.numVowels();
 		if(comp == 0)
          comp = word.compareTo(other.word);
-      return -1;
+      return comp;
 	}
 
 	public String toString()
 	{
-		return "";
+		return word;
 	}
 }
