@@ -22,52 +22,50 @@ public class Student implements Comparable<Student>
 	
 	public Student(String name, String gradeList)
 	{
-
-
-
+      setName(name);
+      setGrades(gradeList);
 	}
 	
 	public void setName(String name)
 	{
-
-
+      if(name == null)
+         throw new IllegalArgumentException("name cant be null");
+      myName = name;
 	}	
 	
 	public void setGrades(String gradeList)
 	{
-
-	
+      myGrades = new Grades(gradeList);
 	}
 	
 	public void setGrade(int spot, double grade)
 	{
-
-
+      myGrades.setGrade(spot, grade);
 	}
 
 	public String getName()
 	{
-		return "";
+		return myName;
 	}
 	
 	public int getNumGrades()
 	{
-		return 0;
+		return myGrades.getNumGrades();
 	}
 
 	public double getSum()
 	{
-		return 0.0;
+		return myGrades.getSum();
 	}
 	
 	public double getAverage()
 	{
-		return 0.0;
+		return getSum()/getNumGrades();
 	}
 
 	public double getAverageMinusLow()
 	{
-		return 0.0;
+		return (getSum() - getLowGrade());
 	}
 	
 	public double getHighGrade()
