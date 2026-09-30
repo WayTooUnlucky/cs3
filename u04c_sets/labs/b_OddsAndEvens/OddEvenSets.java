@@ -15,12 +15,25 @@ public class OddEvenSets
 	private Set<Integer> odds;
 	private Set<Integer> evens;
 
+   {
+      odds = new TreeSet<>();
+      evens = new TreeSet<>();
+   }
 	public OddEvenSets()
 	{
+      
 	}
 
 	public OddEvenSets(String line)
 	{
+       String[] nums = line.split(" ");
+       for(String number : nums) {
+         Integer num = Integer.parseInt(number);
+         if(num % 2 == 0)
+            evens.add(num);
+         else
+            odds.add(num);
+       }
 	}
 
 	public String toString()
