@@ -22,71 +22,80 @@ public class Class
 	
 	public Class(String name, int stuCount)
 	{
-
-	
+      this.name = name;
+      studentList = new Student[stuCount];
 	}
 	
 	public void addStudent(int stuNum, Student s)
 	{
-
-
+      studentList[stuNum] = s;
 	}
 	
 	public void sort()
 	{
-		
+		Arrays.sort(studentList);
 	}
 	
 	public String getClassName()
 	{
-	   return "";	
+	   return name;	
 	}
 	
 	public double getClassAverage()
 	{
 		double classAverage=0.0;
-
-
-
-		return classAverage;
+      for(Student student : studentList) {
+        if(student == null)
+          continue;
+        classAverage += student.getAverage();
+      }
+		return classAverage/studentList.length;
 	}
 	
 	public double getStudentAverage(int stuNum)
 	{
-		return 0.0;
+		return studentList[stuNum].getAverage();
 	}
 
 	public double getStudentAverage(String stuName)
 	{
-
-
-
+      for(Student student : studentList)
+         if(student == null)
+            continue;
+         else if(student.getName().equals(stuName))
+            return student.getAverage();
 		return 0.0;
 	}
 	
 	public String getStudentName(int stuNum)
 	{
-		return "";
+		return studentList[stuNum].getName();
 	}
 
 	public String getStudentWithHighestAverage()
 	{
-		return "";
+      Student highestStu = new Student("none", "" + Double.MIN_VALUE);
+      for(Student stu : studentList)
+         if(stu.getAverage() > highestStu.getAverage())
+            highestStu = stu;
+		return highestStu.getName();
 	}
 
 	public String getStudentWithLowestAverage()
 	{
-		return "";
+      Student lowestStu = new Student("none", "" + Double.MAX_VALUE);
+      for(Student stu : studentList)
+         if(stu.getAverage() < lowestStu.getAverage())
+            lowestStu = stu;
+		return lowestStu.getName();
 	}
 	
 	public String getFailureList(double failingGrade)
 	{
 		String output="";
-
-
-
-
-
+      for(Student stu : studentList)
+         if(stu.getAverage() < failingGrade)
+            output += stu + " ";
 		return output;
 	}
 	

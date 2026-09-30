@@ -65,17 +65,17 @@ public class Student implements Comparable<Student>
 
 	public double getAverageMinusLow()
 	{
-		return (getSum() - getLowGrade());
+		return (getSum() - getLowGrade())/(getNumGrades()-1);
 	}
 	
 	public double getHighGrade()
 	{
-		return getHighGrade();		
+		return myGrades.getHighGrade();		
 	}
 	
 	public double getLowGrade()
 	{
-		return getLowGrade();	
+		return myGrades.getLowGrade();	
 	}
 
 	public int compareTo(Student param)
@@ -90,11 +90,14 @@ public class Student implements Comparable<Student>
 	
 	public boolean equals(Object obj)
 	{
-		return false;
+      if(!(obj instanceof Student))
+         return false;
+      Student o = (Student)obj;
+		return myName.equals(o.myName) && myGrades.equals(o.myGrades);
 	}
 	
 	public String toString()
 	{
-		return "";
+		return myName + " = " + myGrades;
 	}	
 }
