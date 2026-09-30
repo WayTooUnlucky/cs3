@@ -70,17 +70,22 @@ public class Student implements Comparable<Student>
 	
 	public double getHighGrade()
 	{
-		return 0.0;		
+		return getHighGrade();		
 	}
 	
 	public double getLowGrade()
 	{
-		return 0.0;	
+		return getLowGrade();	
 	}
 
 	public int compareTo(Student param)
 	{
-		return 0;
+      int comp = (int)(getAverage() - param.getAverage());
+      if(comp > 0)
+         return 1;
+      if(comp < 0)
+         return -1;
+		return comp;
 	}
 	
 	public boolean equals(Object obj)
