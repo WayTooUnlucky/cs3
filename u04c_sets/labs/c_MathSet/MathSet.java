@@ -16,35 +16,63 @@ public class MathSet
 
 	public MathSet()
 	{
+      this("1","2");
 	}
 
 	public MathSet(String o, String t)
 	{
+      if(o == null || o.length() == 0 || t == null || t.length() == 0)
+         throw new IllegalArgumentException();
+      String[] oRay = o.split(" ");
+      String[] tRay = t.split(" ");
+      one = new TreeSet<>();
+      two = new TreeSet<>();
+      for(String str : oRay)
+         one.add(Integer.parseInt(str));
+      for(String str : tRay)
+         two.add(Integer.parseInt(str));
 	}
 
 	public Set<Integer> union()
-	{
-		return null;
+	{  
+      Set<Integer> union = new TreeSet<>();
+      union.addAll(one);
+      union.addAll(two);
+		return union;
 	}
 
 	public Set<Integer> intersection()
 	{
-		return null;
+      Set<Integer> inter = new TreeSet<>();
+      inter.addAll(one);
+      inter.retainAll(two);
+		return inter;
 	}
 
 	public Set<Integer> differenceAMinusB()
 	{
-		return null;
+      Set<Integer> diff = new TreeSet<>();
+      diff.addAll(one);
+      diff.removeAll(two);
+		return diff;
 	}
 
 	public Set<Integer> differenceBMinusA()
 	{
-		return null;
+		Set<Integer> diff = new TreeSet<>();
+      diff.addAll(two);
+      diff.removeAll(one);
+		return diff;
 	}
 	
 	public Set<Integer> symmetricDifference()
 	{		
-		return null;
+		Set<Integer> sym = new TreeSet<>();
+      sym.addAll(union());
+      sym.removeAll(intersection());
+      return sym;
+      
+      //or (A-B)U(B-A)
 	}	
 	
 	public String toString()
