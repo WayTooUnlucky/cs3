@@ -25,8 +25,10 @@ public class Grades
 	
 	public void setGrades(String gradeList)
 	{
-      if(gradeList == null || gradeList.length() == 0)
-         throw new IllegalArgumentException("gradeList has to exist and have grades!!!!!!!!!");
+      if(gradeList == null)
+         throw new IllegalArgumentException("gradeList has to exist");
+      if(gradeList.length() == 0)
+         gradeList = "1 - " + Double.MIN_VALUE;
       Scanner scan = new Scanner(gradeList);
       grades = new double[scan.nextInt()];
       scan.next();

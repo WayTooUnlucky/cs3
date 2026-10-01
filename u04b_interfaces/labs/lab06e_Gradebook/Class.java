@@ -74,7 +74,7 @@ public class Class
 
 	public String getStudentWithHighestAverage()
 	{
-      Student highestStu = new Student("none", "" + Double.MIN_VALUE);
+      Student highestStu = new Student("none", "1 - " + Double.MIN_VALUE);
       for(Student stu : studentList)
          if(stu.getAverage() > highestStu.getAverage())
             highestStu = stu;
@@ -83,7 +83,7 @@ public class Class
 
 	public String getStudentWithLowestAverage()
 	{
-      Student lowestStu = new Student("none", "" + Double.MAX_VALUE);
+      Student lowestStu = new Student("none", "1 - " + Double.MAX_VALUE);
       for(Student stu : studentList)
          if(stu.getAverage() < lowestStu.getAverage())
             lowestStu = stu;
@@ -95,17 +95,15 @@ public class Class
 		String output="";
       for(Student stu : studentList)
          if(stu.getAverage() < failingGrade)
-            output += stu + " ";
+            output += stu.getName() + " ";
 		return output;
 	}
 	
 	public String toString()
 	{
 		String output=""+getClassName()+"\n";
-
-
-
-
+      for(Student stu : studentList)
+         output += stu + "\t" + stu.getAverage() + "\n";
 		return output;
 	}  	
 }
