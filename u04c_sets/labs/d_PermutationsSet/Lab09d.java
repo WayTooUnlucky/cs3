@@ -24,7 +24,7 @@ public class Lab09d
       out.println();
       out.println("Test null to make sure you're writing robust programs.");
       out.println("Your program should not crash!");
-      out.println(displaySet(PermutationSet.permutations(null)));
+      //out.println(displaySet(PermutationSet.permutations(null)));
    }
    
    public static String displaySet(Set<String> perms) {
@@ -33,6 +33,11 @@ public class Lab09d
       int length = 0;
       for (String word : perms) {
          // Modify the body of this loop to fix the output.
+         length += word.length() + 1;
+         if(length - 1 > max) { //accounts for length of space character
+            length = word.length() + 1;
+            output += "\n";
+         }
          output += word + " ";
       }
       return output;
