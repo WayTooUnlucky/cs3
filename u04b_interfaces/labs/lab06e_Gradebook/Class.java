@@ -103,7 +103,7 @@ public class Class
 	{
 		String output=""+getClassName()+"\n";
       for(Student stu : studentList)
-         output += stu + "\t" + stu.getAverage() + "\n";
+         output += stu + "\t" + String.format("%.2f", stu.getAverage()) + "\n";
 		return output;
 	}  	
 }
