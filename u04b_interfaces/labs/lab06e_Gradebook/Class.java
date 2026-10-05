@@ -8,32 +8,36 @@ import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
+import java.util.Collections;
+import java.util.ArrayList;
 
 public class Class
 {
 	private String name;
-	private Student[] studentList;
+	private ArrayList<Student> studentList;
 	
 	public Class()
 	{
 		name="";
-		studentList=new Student[0];
+		studentList = new ArrayList<>();
 	}
 	
 	public Class(String name, int stuCount)
 	{
       this.name = name;
-      studentList = new Student[stuCount];
+      studentList = new ArrayList<>();
+      for(int i = 0; i < stuCount; i++)
+         studentList.add(new Student());
 	}
 	
 	public void addStudent(int stuNum, Student s)
 	{
-      studentList[stuNum] = s;
+      studentList.set(stuNum, s);
 	}
 	
 	public void sort()
 	{
-		Arrays.sort(studentList);
+		Collections.sort(studentList);
 	}
 	
 	public String getClassName()
@@ -49,12 +53,12 @@ public class Class
           continue;
         classAverage += student.getAverage();
       }
-		return classAverage/studentList.length;
+		return classAverage/studentList.size();
 	}
 	
 	public double getStudentAverage(int stuNum)
 	{
-		return studentList[stuNum].getAverage();
+		return studentList.get(stuNum).getAverage();
 	}
 
 	public double getStudentAverage(String stuName)
@@ -69,14 +73,14 @@ public class Class
 	
 	public String getStudentName(int stuNum)
 	{
-		return studentList[stuNum].getName();
+		return studentList.get(stuNum).getName();
 	}
 
 	public String getStudentWithHighestAverage()
 	{
       Student highestStu = new Student("none", "1 - " + Double.MIN_VALUE);
       for(Student stu : studentList)
-         if(stu.getAverage() > highestStu.getAverage())
+         if(highestStu.compareTo(stu) == 1)
             highestStu = stu;
 		return highestStu.getName();
 	}
@@ -85,7 +89,7 @@ public class Class
 	{
       Student lowestStu = new Student("none", "1 - " + Double.MAX_VALUE);
       for(Student stu : studentList)
-         if(stu.getAverage() < lowestStu.getAverage())
+         if(lowestStu.compareTo(stu) == -1)
             lowestStu = stu;
 		return lowestStu.getName();
 	}

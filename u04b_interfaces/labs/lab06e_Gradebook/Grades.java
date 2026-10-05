@@ -8,10 +8,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
+import java.util.ArrayList;
 
 public class Grades
 {
-	private double[] grades;
+	private ArrayList<Double> grades;
 	
 	public Grades()
 	{
@@ -30,20 +31,21 @@ public class Grades
       if(gradeList.length() == 0)
          gradeList = "1 - " + Double.MIN_VALUE;
       Scanner scan = new Scanner(gradeList);
-      grades = new double[scan.nextInt()];
+      grades = new ArrayList<>();
+      int length = scan.nextInt();
       scan.next();
-      for(int i = 0; i < grades.length; i++)
+      for(int i = 0; i < length; i++)
          if(scan.hasNextDouble())
-            grades[i] = scan.nextDouble();
+            grades.add(scan.nextDouble());
          else
-            break;
+            grades.add(0.0);
 	}
 	
 	public void setGrade(int spot, double grade)
 	{
-      if(spot < 0 || spot >= grades.length)
+      if(spot < 0 || spot >= grades.size())
          throw new IllegalArgumentException("spot must be in bounds");
-      grades[spot] = grade;
+      grades.set(spot, grade);
 	}
 	
 	public double getSum()
@@ -74,7 +76,7 @@ public class Grades
 	
 	public int getNumGrades()
 	{
-		return grades.length;
+		return grades.size();
 	}
 	
 	public String toString()

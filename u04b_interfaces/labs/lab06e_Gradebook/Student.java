@@ -93,7 +93,7 @@ public class Student implements Comparable<Student>
       if(!(obj instanceof Student))
          return false;
       Student o = (Student)obj;
-		return myName.equals(o.myName) && myGrades.equals(o.myGrades);
+		return myGrades.equals(o.myGrades);
 	}
 	
 	public String toString()
