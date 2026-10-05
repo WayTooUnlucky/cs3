@@ -22,47 +22,43 @@ public class Piece extends Drawable implements Nameable
 
 	public Piece(String n)
 	{
-
-
-	
+      this(5,5,n);
 	}
 
 	public Piece(int x, int y, String n)
 	{
-
-
-	
+      this(x,y,5,5,n);
 	}
 
 	public Piece(int x, int y, int w, int h, String n)
 	{
-
-
-		
+      this(x,y,w,h,n,Color.BLUE);
 	}
 
 	public Piece(int x, int y, int w, int h, String n, Color c)
 	{
-
-
-	
+      super(x,y,w,h);
+      setName(n);
+      setColor(c);
 	}
 
 	public void setName(String n)
 	{
-
-
+      if(n == null)
+         throw new NullPointerException("name cannot be null");
+      name = n;
 	}
 
 	public void setColor(Color c)
 	{
-
-
+      if(c == null)
+         throw new NullPointerException("color cannot be null");
+      color = c;
 	}
 	
 	public String getName()
 	{
-		return "";
+		return name;
 	}
 	
 	public Color getColor()
@@ -74,13 +70,12 @@ public class Piece extends Drawable implements Nameable
 	{
 		window.setFont(new Font("TAHOMA",Font.BOLD,28));
 		window.setColor(getColor());
-
-
-
+      window.drawRect(getX(), getY(), getWidth(), getHeight());
+      window.drawString(getName(), getX() + 10, getY() + 30);
 	}
 	
 	public String toString()
 	{
-		return "";
+		return super.toString() + " " + getName() + " " + getColor();
 	}
 }
