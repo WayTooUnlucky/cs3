@@ -27,6 +27,7 @@ public class Lab06a
          out.println(word);
          
       Collections.sort(list);
+      
       out.println("\n\nAfter:");
       for(Word word : list)
          out.println(word);
