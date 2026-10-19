@@ -67,8 +67,9 @@ public class GameBoard extends Canvas implements MouseListener
 			if(determineWinner(window))
 			{
 			  //make a new board	
-			  
+           board = new Grid(BOARDSIZE, BOARDSIZE);
 			  //clear the screen
+           repaint();
 			}	
 			mouseClicked = false;
 		}
@@ -92,11 +93,11 @@ public class GameBoard extends Canvas implements MouseListener
 				prevMouseButton=mouseButton;
 			}
 			//if BUTTON3 was pressed and BUTTON3 was not pressed last mouse press
-
-
+         if(mouseButton == MouseEvent.BUTTON3 && prevMouseButton != mouseButton)
+            if(piece == null)
+               board.setSpot(r,c,new Piece(5+c*50+50,5+r*50+50,WIDTH/3-10,HEIGHT/3-10,"O",Color.RED));
 				//save the current button pressed to compare to next button pressed
-				prevMouseButton=mouseButton;				
-		
+				prevMouseButton=mouseButton;
 		}
 	}
 	
@@ -122,12 +123,48 @@ public class GameBoard extends Canvas implements MouseListener
 		
 		if(winner.equals(""))
 		{
-			//check for diagonal winner
-		}
+			for(int c = 0; c < board.getNumCols(); c++) {
+            Piece col0 = (Piece)board.getSpot(0,c);
+            Piece col1 = (Piece)board.getSpot(1,c);
+            Piece col2 = (Piece)board.getSpot(2,c);
+            
+            if(col0 == null || col1 == null || col2 == null) continue;
+            if(col0.getName().equals(col1.getName()) && col0.getName().equals(col2.getName())) {
+               winner = col0.getName()+" wins vertically!";
+               break;
+            }
+         }
+         
+  		}
 		
 		if(winner.equals(""))
 		{
-			//check for diagonal winner
+         Piece zerozero = (Piece)board.getSpot(0,0);
+         Piece oneone = (Piece)board.getSpot(1,1);
+         Piece twotwo = (Piece)board.getSpot(2,2);
+         Piece zerotwo = (Piece)board.getSpot(0,2);
+         Piece twozero = (Piece)board.getSpot(2,0);
+         
+         if(zerozero != null && oneone != null && twotwo != null)
+            if(zerozero.getName().equals(oneone.getName() && 
+         boolean majDiag = true;
+         boolean minDiag = true;
+         Piece majorDiag = (Piece)board.getSpot(0,0);
+         Piece minorDiag = (Piece)board.getSpot(0,board.getNumCols()-1);
+         
+			for(int i = 0; i < board.getNumRows(); i++) {
+            Piece currMajorDiag = (Piece)board.getSpot(i,i);
+            Piece currMinorDiag = (Piece)board.getSpot(i,board.getNumCols()-i-1);
+            if(majorDiag == null || currMajorDiag == null || !currMajorDiag.getName().equals(majorDiag.getName()))
+               majDiag = false;
+            if(minorDiag == null || currMinorDiag == null || !currMinorDiag.getName().equals(minorDiag.getName()))
+               minDiag = false;
+         }
+         
+         if(majorDiag != null && majDiag == true)
+            winner = majorDiag.getName() + " wins diagonally!";
+         if(minorDiag != null && minDiag == true)
+            winner = minorDiag.getName() + " wins diagonally!";
 		}
 
 		if(winner.indexOf("no name")>-1){
