@@ -146,25 +146,11 @@ public class GameBoard extends Canvas implements MouseListener
          Piece twozero = (Piece)board.getSpot(2,0);
          
          if(zerozero != null && oneone != null && twotwo != null)
-            if(zerozero.getName().equals(oneone.getName() && 
-         boolean majDiag = true;
-         boolean minDiag = true;
-         Piece majorDiag = (Piece)board.getSpot(0,0);
-         Piece minorDiag = (Piece)board.getSpot(0,board.getNumCols()-1);
-         
-			for(int i = 0; i < board.getNumRows(); i++) {
-            Piece currMajorDiag = (Piece)board.getSpot(i,i);
-            Piece currMinorDiag = (Piece)board.getSpot(i,board.getNumCols()-i-1);
-            if(majorDiag == null || currMajorDiag == null || !currMajorDiag.getName().equals(majorDiag.getName()))
-               majDiag = false;
-            if(minorDiag == null || currMinorDiag == null || !currMinorDiag.getName().equals(minorDiag.getName()))
-               minDiag = false;
-         }
-         
-         if(majorDiag != null && majDiag == true)
-            winner = majorDiag.getName() + " wins diagonally!";
-         if(minorDiag != null && minDiag == true)
-            winner = minorDiag.getName() + " wins diagonally!";
+            if(zerozero.getName().equals(oneone.getName()) && zerozero.getName().equals(twotwo.getName()))
+               winner = oneone.getName() + " wins diagonally!";
+         if(zerotwo != null && oneone != null && twozero != null)
+            if(oneone.getName().equals(zerotwo.getName()) && oneone.getName().equals(twozero.getName()))
+               winner = oneone.getName() + " wins diagonally!";
 		}
 
 		if(winner.indexOf("no name")>-1){
