@@ -1,4 +1,4 @@
-//© A+ Computer Science  -  www.apluscompsci.com
+// A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
@@ -35,6 +35,6 @@ public class CardTestOne
 		out.println(one.equals(two));
 		out.println(one.equals(one));		
 		out.println(four.equals(five));	
-		out.println(three.equals(four));						
+		out.println(three.equals(four));	
 	}
 }

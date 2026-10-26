@@ -20,7 +20,7 @@ public class TicTacToe extends JFrame
 				
 		setVisible(true);
 	}
-	
+    
 	public static void main( String args[] )
 	{
 		TicTacToe run = new TicTacToe();
