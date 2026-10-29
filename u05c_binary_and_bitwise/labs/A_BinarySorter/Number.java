@@ -11,7 +11,7 @@ public class Number implements Comparable<Number>
 
 	//add in instance variables
    private int base;
-   private int number; //stored in base 10
+   private final int number; //stored in base 10
 	
    public Number() {base = 2; number = 1;}
    public Number(String num, int bse) {
