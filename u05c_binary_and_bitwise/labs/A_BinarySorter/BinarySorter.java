@@ -24,13 +24,12 @@ public class BinarySorter
       scan.nextLine();
       for(int i = 0; i < runTimes; i++) {
       
-         numList.add(new Number(scan.next(), scan.nextInt()));
+         numList.add(new Number(scan.nextInt(), scan.nextInt()));
          scan.nextLine();
       }
       
       // Sort the list.
       Collections.sort(numList);
-      out.println(numList);
       
       out.printf("%-6s %-4s %-6s %s %n", "number", "base", "base10", "binary");
       for(Number n : numList)
