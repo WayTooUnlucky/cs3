@@ -24,7 +24,7 @@ public class BinarySorter
       scan.nextLine();
       for(int i = 0; i < runTimes; i++) {
       
-         numList.add(new Number(scan.nextInt(), scan.nextInt()));
+         numList.add(new Number(scan.next(), scan.nextInt()));
          scan.nextLine();
       }
       
