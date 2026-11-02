@@ -19,6 +19,8 @@ public class Histogram
 
 	public Histogram(String sent)
 	{
+      if(sent == null || sent.isBlank())
+         throw new IllegalArgumentException("input needs to have something");
       histogram = new TreeMap<>();
       for(String s : sent.split(" "))
          if(histogram.containsKey(s))
@@ -26,20 +28,14 @@ public class Histogram
          else
             histogram.put(s, 1);
 	}
-	
-	public void setSentence()
-	{
-	}
 
 	public String toString()
 	{
-		String allStars="************************";
 		String output="";
       output += "                 111111\n";
       output += "char    123456789012345\n";
       for(String str : histogram.keySet()) {
          output += String.format("%-8s", str);
-         //output += allStars.substring(0,histogram.get(str)) + "\n";
          for(int i = 0; i < histogram.get(str); i++)
             output += "*";
          output += "\n";
