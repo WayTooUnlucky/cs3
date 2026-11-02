@@ -16,44 +16,32 @@ public class Relatives
 
 	public Relatives()
 	{
-
-
-
+      map = new TreeMap<>();
 	}
 
 	public void setPersonRelative(String line)
 	{
 		String[] personRelative = line.split(" ");
-
-
-
-
-
-
-
-
-
-
+      if(!(map.containsKey(personRelative[0])))
+         map.put(personRelative[0], new TreeSet<String>());
+      map.get(personRelative[0]).add(personRelative[1]);
 	}
 
 
 	public String getRelatives(String person)
 	{
-		return "";
+		return map.get(person).toString();
 	}
 
-
+   public boolean isRelative(String person, String relative) {
+      return map.get(person).contains(relative);
+   }
 	public String toString()
 	{
 		String output="";
-
-
-
-
-
-
-
-
+      for(String person : map.keySet()) {
+         output += 
+      }
 		return output;
 	}
 }
