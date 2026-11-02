@@ -18,7 +18,9 @@ public class Lab08b
 		SpanishToEnglish test = new SpanishToEnglish();
 
 		//read in pairs from the file and load the map
-
+      while(file.hasNextLine())
+         test.putEntry(file.nextLine());
+      file.close();
 		out.println("\n====\tMAP CONTENTS\t====\n\n");
 
 		//print the map
@@ -26,6 +28,8 @@ public class Lab08b
 		out.println(test+"\n\n");
 
 		//read in the lines and convert them
-
+      file = new Scanner(new File("phrase.dat"));
+      while(file.hasNextLine())
+         out.println(test.translate(file.nextLine()));
 	}
 }
