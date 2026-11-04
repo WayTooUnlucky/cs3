@@ -12,25 +12,33 @@ public class Part implements Comparable<Part>
 	public Part(String line) 
 	{
 		String[] list = line.split(" ");
-
-
-
-
+      part = list[0];
+      int i = 1;
+      for( ; i < list; i++)
+         if(list[i]
+      
+      partNumber = Integer.parseInt(list[i++]);
+      make = list[i++];
+      mode = list[i++];
+      year = Integer.parseInt(list[i++]);
 	}
 
 	//have to have compareTo if implements Comparable
 	public int compareTo( Part other )
 	{
-
-
-
-
-
-		return 0;
+      int comp = 0;
+         comp = make.compareTo(other.make);
+      if(comp == 0)
+         comp = mode.compareTo(other.mode);
+      if(comp == 0)
+         comp = year - other.year;
+      if(comp == 0)
+         comp = part.compareTo(other.part);
+		return comp;
 	}
 
 	public String toString()
 	{
-		return "";
+		return String.format("%s %s %d  %s %d", make, mode, year, part, partNumber);
 	}
 }

@@ -18,3 +18,5 @@ public class Lab08d
 		out.println(prog);
 	}
 }
+//Radiator 23102 Dodge Dakota 2001
+//add that back into lab08d after to try and do that

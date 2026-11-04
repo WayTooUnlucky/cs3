@@ -17,22 +17,39 @@ public class PartList
 	
 	public PartList()
 	{
-
-
+      partsMap = new TreeMap<>();
 	}
 	
-	public PartList(String fileName)
+	public PartList(String fileName) throws IOException
 	{
 		this();
+      
+      
+      Scanner file2 = new Scanner(new File(fileName));
+			//add code here to read from the file 
+         while(file2.hasNextLine()) {
+            String line = file2.nextLine();
+            if(line.length() == 0)
+               break;
+            Part p = new Part(line);
+            if(partsMap.containsKey(p))
+               partsMap.put(p, partsMap.get(p) + 1);
+            else
+               partsMap.put(p, 1);
+         }
+       /*  
 		try
 		{
-			Scanner file = new Scanner(new File("lab08d.dat"));
+			Scanner file = new Scanner(new File(fileName));
 			//add code here to read from the file 
-			//and add Parts to the map
-
-
-
-
+         while(file.hasNextLine()) {
+            Part p = new Part(file.nextLine());
+            out.println(p);
+            if(partsMap.containsKey(p))
+               partsMap.put(p, partsMap.get(p) + 1);
+            else
+               partsMap.put(p, 1);
+         }
 		}
 		catch( IOException e )  //Most specific exceptions must be listed 1st
 		{
@@ -50,15 +67,14 @@ public class PartList
 		{
 			//no code needed here
 		}
+      */
 	}
 	
 	public String toString()
 	{
 		String output="";
-
-
-
-
+      for(Part p : partsMap.keySet())
+         output += String.format("%s - %d\n", p, partsMap.get(p));
 		return output;
 	}
 }
