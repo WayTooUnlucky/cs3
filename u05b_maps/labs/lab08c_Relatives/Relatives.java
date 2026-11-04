@@ -22,6 +22,8 @@ public class Relatives
 	public void setPersonRelative(String line)
 	{
 		String[] personRelative = line.split(" ");
+      if(personRelative.length < 2)
+         return;
       if(!(map.containsKey(personRelative[0])))
          map.put(personRelative[0], new TreeSet<String>());
       map.get(personRelative[0]).add(personRelative[1]);
@@ -40,7 +42,10 @@ public class Relatives
 	{
 		String output="";
       for(String person : map.keySet()) {
-         output += 
+         String relatives = "";
+         for(String rel : map.get(person))
+            relatives += rel + " ";
+         output += String.format("%s is related to %s\n", person, relatives);
       }
 		return output;
 	}
