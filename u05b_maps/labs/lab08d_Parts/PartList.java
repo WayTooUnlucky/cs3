@@ -20,31 +20,16 @@ public class PartList
       partsMap = new TreeMap<>();
 	}
 	
-	public PartList(String fileName) throws IOException
+	public PartList(String fileName)
 	{
 		this();
       
-      
-      Scanner file2 = new Scanner(new File(fileName));
-			//add code here to read from the file 
-         while(file2.hasNextLine()) {
-            String line = file2.nextLine();
-            if(line.length() == 0)
-               break;
-            Part p = new Part(line);
-            if(partsMap.containsKey(p))
-               partsMap.put(p, partsMap.get(p) + 1);
-            else
-               partsMap.put(p, 1);
-         }
-       /*  
 		try
 		{
 			Scanner file = new Scanner(new File(fileName));
 			//add code here to read from the file 
          while(file.hasNextLine()) {
             Part p = new Part(file.nextLine());
-            out.println(p);
             if(partsMap.containsKey(p))
                partsMap.put(p, partsMap.get(p) + 1);
             else
@@ -67,7 +52,7 @@ public class PartList
 		{
 			//no code needed here
 		}
-      */
+      
 	}
 	
 	public String toString()

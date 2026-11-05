@@ -14,9 +14,11 @@ public class Part implements Comparable<Part>
 		String[] list = line.split(" ");
       part = list[0];
       int i = 1;
-      for( ; i < list; i++)
-         if(list[i]
-      
+      for( ; i < list.length; )
+         if(Character.isDigit(list[i].charAt(0)))
+            break;
+         else
+            part += " " + list[i++];
       partNumber = Integer.parseInt(list[i++]);
       make = list[i++];
       mode = list[i++];
