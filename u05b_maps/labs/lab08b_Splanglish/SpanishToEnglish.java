@@ -33,6 +33,9 @@ public class SpanishToEnglish
 
 	public String toString()
 	{
-		return pairs.toString().replaceAll("\\,","\n");
+      String output = " " + pairs.toString().replaceAll("\\,","\n");
+      output = output.replaceAll("[{}]", "");
+      output = output.replaceAll("=", " = "); 
+		return output;
 	}
 }
