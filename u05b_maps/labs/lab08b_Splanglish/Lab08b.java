@@ -13,14 +13,16 @@ public class Lab08b
 {
 	public static void main( String args[] ) throws IOException
 	{
-		Scanner file = new Scanner(new File("dictionary.dat"));
+		Scanner file = new Scanner(new File("lab08b.dat"));
 
 		SpanishToEnglish test = new SpanishToEnglish();
 
 		//read in pairs from the file and load the map
-      while(file.hasNextLine())
+      int size = file.nextInt();
+      file.nextLine();
+      for(int i = 0; i < size; i++) {
          test.putEntry(file.nextLine());
-      file.close();
+      }
 		out.println("\n====\tMAP CONTENTS\t====\n\n");
 
 		//print the map
@@ -28,7 +30,6 @@ public class Lab08b
 		out.println(test+"\n\n");
 
 		//read in the lines and convert them
-      file = new Scanner(new File("phrase.dat"));
       while(file.hasNextLine())
          out.println(test.translate(file.nextLine()));
 	}
