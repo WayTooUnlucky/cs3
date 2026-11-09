@@ -21,13 +21,18 @@ public class Relatives
 
 	public void setPersonRelative(String line)
 	{
-		String[] personRelative = line.split(" ");
-      if(personRelative.length < 2)
+		String[] relative = line.split(" ");
+      if(relative.length < 2)
          return;
-      if(!(map.containsKey(personRelative[0])))
-         map.put(personRelative[0], new TreeSet<String>());
-      map.get(personRelative[0]).add(personRelative[1]);
-	}
+
+      if(!(map.containsKey(relative[0])))
+         map.put(relative[0], new TreeSet<String>());
+      map.get(relative[0]).add(relative[1]);
+      
+      if(!(map.containsKey(relative[1])))
+         map.put(relative[1], new TreeSet<String>());
+      map.get(relative[1]).add(relative[0]);
+   }
 
 
 	public String getRelatives(String person)
