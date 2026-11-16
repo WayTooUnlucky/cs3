@@ -23,7 +23,8 @@ public class Lab13b
       car(cdr(a)(b)))
       car(cdr(a)(b))""";
 
-      
-      SyntaxChecker sc = new SyntaxChecker("
+      Scanner scan = new Scanner(input);
+      while(scan.hasNextLine()) 
+      out.println(new SyntaxChecker(scan.nextLine()) + "\n");
 	}
 }
