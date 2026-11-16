@@ -36,6 +36,7 @@ public class SyntaxChecker
       map.put("{","}");
       map.put("(",")");
       map.put("[","]");
+      map.put("<",">");
       for(int i = 0; i < exp.length(); i++) {
          String curr = exp.substring(i,i+1);
          if(map.containsKey(curr))
