@@ -44,13 +44,11 @@ public class SyntaxChecker
          else if(map.containsValue(curr)) {
             if(symbols.isEmpty())
                return false;
-            else if(!map.get(symbols.pop()).equals(curr))
+            if(!map.get(symbols.pop()).equals(curr))
                return false;
          }
       }
-      if(symbols.size() != 0)
-         return false;
-		return true;
+		return symbols.isEmpty();
 	}
    
    public String toString() {
