@@ -10,9 +10,22 @@ public class MathNotations {
   // Converts given infix expression to postfix expression.  
    public static String infixToPostfix(String exp) 
    { 
-   
+      Stack<String> stack = new Stack<>();
+      String output = "";
+      if(hasWhitespace(exp))
+         if(exp.contains("."))
+            throw new IllegalArgumentException("put spaces btwn all ur numbers and symbols - decimal nums need it");
+         else
+            exp = exp.replaceAll("(","( ").replaceAll(")"," )"); //adds space btwn paranthesis and num
+      else
+         exp = exp.replaceAll(""," ");
    }
-    
+   private static boolean hasWhitespace(String exp) {
+      for(char cha : exp.toCharArray())
+         if(Character.isWhiteSpace(cha))
+            return true;
+      return false;
+   }
   // A utility function to return precedence of a given operator 
   // Higher returned value means higher precedence 
    private static int precedence(String ch) { 
