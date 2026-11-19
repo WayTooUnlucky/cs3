@@ -17,9 +17,9 @@ public class ExpressionSolver
        @throws UnsupportedOperationException if op isn't 
                a supported operator.
    **/
-   private static double calc(double two, double one, String op) {
+   private static double calc(double one, double two, String op) {
       if(op.equals("+"))
-         return one + two; //pop does reverse order
+         return one + two;
       if(op.equals("-"))
          return one - two;
       if(op.equals("*"))
@@ -30,8 +30,8 @@ public class ExpressionSolver
          return Math.pow(one, two);
       throw new UnsupportedOperationException();
    }
-   private static double calcReverse(double two, double one, String op) {
-      return calc(one, two, op);
+   private static double calcReverse(double one, double two, String op) {
+      return calc(two, one, op);
    }
 
    /*** Postfix Evaluator ***/   
@@ -39,11 +39,10 @@ public class ExpressionSolver
       Stack<Double> stack = new Stack<>();
       Scanner scan = new Scanner(expression);
       while(scan.hasNext()) {
-         String next = scan.next();
-         if(isNumber(next))
-            stack.push(Double.parseDouble(next));
+         if(scan.hasNextDouble())
+            stack.push(scan.nextDouble());
          else
-            stack.push(calc(stack.pop(), stack.pop(), next));
+            stack.push(calcReverse(stack.pop(), stack.pop(), scan.next()));
       }
       return stack.pop();
    } 
@@ -56,7 +55,7 @@ public class ExpressionSolver
          if(isNumber(exp[i]))
             stack.push(Double.parseDouble(exp[i]));
          else
-            stack.push(calcReverse(stack.pop(), stack.pop(), exp[i]));
+            stack.push(calc(stack.pop(), stack.pop(), exp[i]));
       }
       return stack.pop();
    }   
