@@ -29,6 +29,9 @@ public class Lab13d
 		System.out.println(test);
 
 		//expand the test cases to test the class more thoroughly
-
+      test.push(53);
+      test.push(4);
+      test.push(4233);
+      out.println(test.pop() / test.pop() / test.pop());
 	}
 }

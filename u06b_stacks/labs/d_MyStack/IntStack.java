@@ -10,46 +10,44 @@
 
 import java.util.ArrayList;
 import static java.lang.System.*;
+import java.util.EmptyStackException;
 
 public class IntStack
 {
-	//pick your storage for the stack
-	//you can use the an array or an ArrayList
-
-	//option 1
-	private int[] rayOfInts;
-	private int numInts;
-
 	//option 2
 	private ArrayList<Integer> listOfInts;
 
 	public IntStack()
 	{
-
+      listOfInts = new ArrayList<>();
 	}
 
 	public void push(int item)
 	{
-
+      listOfInts.add(item);
 	}
 
 	public int pop()
 	{
-		return 0;
+      if(isEmpty())
+         throw new EmptyStackException();
+		return listOfInts.remove(listOfInts.size()-1);
 	}
 
 	public boolean isEmpty()
 	{
-		return false;
+		return listOfInts.isEmpty();
 	}
 
 	public int peek()
 	{
-		return 0;
+      if(isEmpty())
+         throw new EmptyStackException();
+		return listOfInts.get(listOfInts.size()-1);
 	}
 
 	public String toString()
 	{
-		return "";
+		return listOfInts.toString();
 	}
 }
