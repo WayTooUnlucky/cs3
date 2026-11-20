@@ -12,19 +12,29 @@ public class MathNotations {
    { 
       Stack<String> stack = new Stack<>();
       String output = "";
-      if(hasWhitespace(exp))
+      if(exp.contains(" ")) {
          if(exp.contains("."))
-            throw new IllegalArgumentException("put spaces btwn all ur numbers and symbols - decimal nums need it");
+            throw new IllegalArgumentException("put spaces btwn all nums and syms - decimal nums need it");
          else
             exp = exp.replaceAll("(","( ").replaceAll(")"," )"); //adds space btwn paranthesis and num
+      }
       else
          exp = exp.replaceAll(""," ");
-   }
-   private static boolean hasWhitespace(String exp) {
-      for(char cha : exp.toCharArray())
-         if(Character.isWhiteSpace(cha))
-            return true;
-      return false;
+         
+      Scanner scan = new Scanner(exp);
+      int currPrecedence = -1;
+      while(scan.hasNext()) {
+         String next = scan.next();
+         if(isNumeric(next))
+            output += next + " ";
+         else if(stack.empty() || next.equals("(") || precedence(next) > currPrecedence)
+            stack.push(next);
+         else {
+            while(
+         }
+         
+      }
+   
    }
   // A utility function to return precedence of a given operator 
   // Higher returned value means higher precedence 
@@ -43,7 +53,6 @@ public class MathNotations {
       } 
       return -1; 
    } 
-  
   
    public static boolean isNumeric(String s) {
       ParsePosition pos = new ParsePosition(0);
