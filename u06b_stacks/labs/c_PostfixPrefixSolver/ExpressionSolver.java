@@ -30,19 +30,32 @@ public class ExpressionSolver
          return Math.pow(one, two);
       throw new UnsupportedOperationException();
    }
-   private static double calcReverse(double one, double two, String op) {
-      return calc(two, one, op);
-   }
+   
+//    private static double calcReverse(double one, double two, String op) {
+//       return calc(two, one, op);
+//    }
 
    /*** Postfix Evaluator ***/   
    public static double solvePostfix(String expression) {
       Stack<Double> stack = new Stack<>();
-      Scanner scan = new Scanner(expression);
-      while(scan.hasNext()) {
-         if(scan.hasNextDouble())
-            stack.push(scan.nextDouble());
-         else
-            stack.push(calcReverse(stack.pop(), stack.pop(), scan.next()));
+      /*
+         Scanner scan = new Scanner(expression);
+         while(scan.hasNext()) {
+            if(scan.hasNextDouble())
+               stack.push(scan.nextDouble());
+            else
+               stack.push(calcReverse(stack.pop(), stack.pop(), scan.next()));
+         }
+         return stack.pop();
+      */
+      for(String sym : expression.split(" ")) {
+         if(isNumber(sym))
+            stack.push(Double.parseDouble(sym));
+         else {
+            Double num2 = stack.pop();
+            Double num1 = stack.pop();
+            stack.push(calc(num1, num2, sym));
+         }
       }
       return stack.pop();
    } 
@@ -68,6 +81,17 @@ public class ExpressionSolver
          return true;
       }
       catch (NullPointerException | NumberFormatException e) {
+         return false;
+      }
+   }
+   public static boolean isNumber2(String symbol) {
+      if(symbol == null)
+         return false;
+      try {
+         Double.parseDouble(symbol);
+         return true;
+      }
+      catch(NumberFormatException e) {
          return false;
       }
    }
